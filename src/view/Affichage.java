@@ -39,14 +39,14 @@ public class Affichage extends JPanel {
         this.parcours = parcours;
         setPreferredSize(new Dimension(winWidth, winHeight));
         score = 0;
-        //add score label
-        scoreLabel = new JLabel("Score: " + score);
+        //add score label save two decimal places
+        scoreLabel = new JLabel("Score: " + String.format("%.2f", score));
         this.add(scoreLabel);
     }
 
     public void AddScore(float interval){
         score += interval;
-        scoreLabel.setText("Score: " + score);
+        scoreLabel.setText("Score: " + String.format("%.2f", score));
     }
 
 

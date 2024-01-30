@@ -14,7 +14,7 @@ public class GameOverPanel extends JPanel {
 
     public GameOverPanel() {
         gameOverLabel = new JLabel("Game Over");
-        scoreLabel = new JLabel("Score: " + Affichage.GetScore());
+        scoreLabel = new JLabel("Score: " + String.format("%.2f", Affichage.GetScore()) );
         reStartButton = new JButton("Restart");
         menuButton = new JButton("Menu");
 
