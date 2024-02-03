@@ -1,12 +1,10 @@
 package view;
 
-import view.Affichage;
-
 /**
  * XU ZIHAN GROUPE 1
  */
 public class Redessine extends Thread {
-    private Affichage monAffichage;
+    private final Affichage monAffichage;
     private static final int DELAY = 50;
     public Redessine(Affichage Aff){
         monAffichage = Aff;

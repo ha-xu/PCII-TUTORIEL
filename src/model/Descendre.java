@@ -4,7 +4,7 @@ package model;
  * XU ZIHAN GROUPE 1
  */
 public class Descendre extends Thread {
-    private Position pos;
+    private final Position pos;
     private static final int interval = 100;
 
     private boolean isPause = false;

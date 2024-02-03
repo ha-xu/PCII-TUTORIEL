@@ -1,8 +1,8 @@
 package model;
 
 public class ParcoursMove extends Thread{
-    private Position position;
-    private Parcours parcours;
+    private final Position position;
+    private final Parcours parcours;
     private static final int interval = 100;
 
     private boolean isPause = false;

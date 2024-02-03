@@ -21,10 +21,10 @@ public class Affichage extends JPanel {
     public static final int circleWidth = (int) ((int) Position.WIDTHOVALE * ratio_x);
 
     private static float score = 0;
-    private Position pos;
-    private Parcours parcours;
+    private final Position pos;
+    private final Parcours parcours;
 
-    private JLabel scoreLabel;
+    private final JLabel scoreLabel;
 
     private Point modelPointToViewPoint(Point p) {
         return new Point( (int)X + (int) (p.getX() * ratio_x), (int)Y - (int) (p.getY() * ratio_y));
@@ -53,25 +53,31 @@ public class Affichage extends JPanel {
     @Override
     public void paint(Graphics g) {
         super.paint(g);
+
         g.setColor(Color.BLACK);
         //change the thickness of the line
         Graphics2D g2 = (Graphics2D) g;
         g2.setStroke(new BasicStroke(5.0f));
         //change the color of the line
         g2.setColor(Color.ORANGE);
-        
-        Rectangle FrameRect = g.getClipBounds();
-        Point centerPosition = modelPointToViewPoint(new Point(0, (int)pos.get() ));
 
-        //draw a point at the center of the circle
-        g.drawOval((int)centerPosition.getX(), (int)centerPosition.getY(),1,1);
-        g.drawOval((int)centerPosition.getX()-circleWidth/2, (int)centerPosition.getY()- circleHeight/2, circleWidth, circleHeight);
+
+        paintCircle(g);
+
 
         g2.setStroke(new BasicStroke(3.0f));
         //change the color of the line
         g2.setColor(Color.black);
 
+
         paintParcours(g);
+    }
+
+    public void paintCircle(Graphics g){
+        Point centerPosition = modelPointToViewPoint(new Point(0, (int)pos.get() ));
+        //draw a point at the center of the circle
+        g.drawOval((int)centerPosition.getX(), (int)centerPosition.getY(),1,1);
+        g.drawOval((int)centerPosition.getX()-circleWidth/2, (int)centerPosition.getY()- circleHeight/2, circleWidth, circleHeight);
     }
 
 
@@ -84,8 +90,6 @@ public class Affichage extends JPanel {
             Point p1 = modelPointToViewPoint(points.get(i)) ;
             Point p2 = modelPointToViewPoint(points.get(i+1));
             //print p1 and p2 's coordinate in console
-//            System.out.println("p1: " + p1.getX() + " " + p1.getY());
-//            System.out.println("p2: " + p2.getX() + " " + p2.getY());
             g.drawLine((int) (p1.getX()), (int) (p1.getY()), (int) (p2.getX()), (int) (p2.getY()));
         } }
 }

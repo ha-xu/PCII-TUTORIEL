@@ -1,6 +1,6 @@
 package model;
+
 import java.awt.*;
-import java.awt.Point;
 import java.util.ArrayList;
 import java.util.Random;
 public class Parcours {
@@ -12,13 +12,9 @@ public class Parcours {
 
     public static int Y_MIN = Position.HAUTEUR_MIN+20;
     public static int Y_MAX = Position.HAUTEUR_MAX-20;
-    private final int X0 = 0;
-    private final int Y0 = 5;
 
-    private Position pos;
-    private ArrayList<Point> points = new ArrayList<Point>();
-    private final Point debut = new Point(X0, Y0);
-    private final Point debut2 = new Point(X0 + HORIZON, Y0);
+    private final Position pos;
+    private final ArrayList<Point> points = new ArrayList<>();
 
     public ArrayList<Point> getPoints() {
         ArrayList<Point> newPoints = new ArrayList<>();
@@ -32,10 +28,14 @@ public class Parcours {
 
     public Parcours(Position pos) {
         this.pos = pos;
+        int x0 = 0;
+        int y0 = 5;
+        Point debut = new Point(x0, y0);
         points.add(debut);
+        Point debut2 = new Point(x0 + HORIZON, y0);
         points.add(debut2);
-        int x1 = X0 + HORIZON;
-        int y1 = 0;
+        int x1 = x0 + HORIZON;
+        int y1;
         while(x1 <= MaxLength) {
             Random rand = new Random();
             y1  = rand.nextInt(Y_MAX - Y_MIN) + Y_MIN;

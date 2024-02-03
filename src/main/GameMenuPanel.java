@@ -31,16 +31,7 @@ public class GameMenuPanel extends JPanel{
 
         this.setVisible(true);
         //add a listener to the button
-        startButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Main.GameStart();
-            }
-        });
-
-        quitButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                System.exit(0);
-            }
-        });
+        startButton.addActionListener(evt -> Main.GameStart());
+        quitButton.addActionListener(evt -> System.exit(0));
     }
 }

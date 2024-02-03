@@ -1,19 +1,11 @@
 package model;
 
-import view.Affichage;
-
-import java.awt.geom.Point2D;
-
 public class Position {
 
-    public static final int GROUND = Affichage.winHeight; //y value of ground
     public static final double G = 15; //gravity
     private double hauteur = 5; //La hauteur initiale du cercle est le milieu de la fenêtre
 
     //Getter of hauteur
-    public double getHauteur() {
-        return hauteur;
-    }
     private static final double VITESSEINITAL = 15;
 
     private double vitesse = 0;
@@ -45,7 +37,7 @@ public class Position {
     public void move(double interval) {
 
         vitesse = vitesse - G * interval * 0.001; //calculer la vitesse ( v = v0 - gt)
-        hauteur = ((double) hauteur + (double) vitesse * (double) interval / 1000); // valculer la hauteur ( h = vt)
+        hauteur = (hauteur + vitesse * interval / 1000); // valculer la hauteur ( h = vt)
     }
 
     public void ParcoursMove(){

@@ -1,17 +1,14 @@
 package model;
 
-import main.GameOverPanel;
 import main.Main;
 
-import javax.swing.*;
-
 public class CollisionDetecteur extends Thread{
-    private Position position;
-    private Parcours parcours;
+    private final Position position;
+    private final Parcours parcours;
 
-    private  Descendre descendre;
+    private final Descendre descendre;
 
-    private ParcoursMove parcoursMove;
+    private final ParcoursMove parcoursMove;
 
     private static final int interval = 20;
 
@@ -22,7 +19,6 @@ public class CollisionDetecteur extends Thread{
         this.parcours = parcours;
         this.descendre = descendre;
         this.parcoursMove = parcoursMove;
-        ;
     }
 
     @Override

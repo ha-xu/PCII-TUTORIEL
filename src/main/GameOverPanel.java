@@ -7,16 +7,12 @@ import javax.swing.border.EmptyBorder;
 import java.awt.*;
 
 public class GameOverPanel extends JPanel {
-    private JLabel gameOverLabel;
-    private JLabel scoreLabel;
-    private JButton reStartButton;
-    private JButton menuButton;
 
     public GameOverPanel() {
-        gameOverLabel = new JLabel("Game Over");
-        scoreLabel = new JLabel("Score: " + String.format("%.2f", Affichage.GetScore()) );
-        reStartButton = new JButton("Restart");
-        menuButton = new JButton("Menu");
+        JLabel gameOverLabel = new JLabel("Game Over");
+        JLabel scoreLabel = new JLabel("Score: " + String.format("%.2f", Affichage.GetScore()));
+        JButton reStartButton = new JButton("Restart");
+        JButton menuButton = new JButton("Menu");
 
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         this.setPreferredSize(new java.awt.Dimension(500, 350));
@@ -45,17 +41,9 @@ public class GameOverPanel extends JPanel {
         this.add(Box.createVerticalGlue());
 
         //add a listener to the button
-        reStartButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Main.GameStart();
-        }
-        });
+        reStartButton.addActionListener(evt -> Main.GameStart());
 
-        menuButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Main.ShowMenu();
-            }
-        });
+        menuButton.addActionListener(evt -> Main.ShowMenu());
     }
 
 
