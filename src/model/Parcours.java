@@ -51,16 +51,10 @@ public class Parcours {
             if(points.get(1).getX() - pos.getAvancement() < -Position.AFTER){
                 points.removeFirst();
             }
-//           System.out.println("points(1).X= " + (points.get(2).getX() - pos.getAvancement()) );
         }
 
-//       System.out.println("points(0).X - avancement= " + (points.get(0).getX() - pos.getAvancement()) );
-//       System.out.println("points(0).X= " + (points.get(0).getX()) );
-//       System.out.println("points(1).X - avancement= " + (points.get(1).getX() - pos.getAvancement()) );
-//       System.out.println("points(1).X= " + (points.get(1).getX()) );
 
        int dernierX = points.getLast().x - pos.getAvancement() ;
-//       System.out.println("dernierX= " + (dernierX) );
 
        if(dernierX<=MaxLength){
            Random rand = new Random();
@@ -71,28 +65,20 @@ public class Parcours {
            Point p = new Point(newX, newY);
            points.add(p);
        }
-//       GetYinPosition0();
-       System.out.println("points.size() = " + points.size());
    }
 
    public double GetYinPosition0(){
        //get two points whose (X - avancement) are around the position 0
-
        Point p0 = new Point();
          Point p1 = new Point();
 
        for(Point p : points){
            if(p.getX() - pos.getAvancement() <= 0 && points.get(points.indexOf(p)+1).getX() - pos.getAvancement() >= 0){
-//               System.out.println("p.getX() - pos.getAvancement() = " + (p.getX() - pos.getAvancement()));
-//               System.out.println("points.get(points.indexOf(p)+1).getX() - pos.getAvancement() = " + (points.get(points.indexOf(p)+1).getX() - pos.getAvancement()));
                 p0.setLocation(p.getX() - pos.getAvancement(), p.getY());
                 p1.setLocation(points.get(points.indexOf(p)+1).getX() - pos.getAvancement(), points.get(points.indexOf(p)+1).getY());
                 break;
            }
        }
-       //get the Y in position 0
-       //print the Y in position 0
-        //System.out.println("Y0 = " + Y0);
        return p0.getY() + (p1.getY() - p0.getY()) * (0 - p0.getX()) / (p1.getX() - p0.getX());
 
 

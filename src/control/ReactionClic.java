@@ -15,7 +15,6 @@ public class ReactionClic implements MouseListener {
 
     @Override
     public void mouseClicked(MouseEvent e) {
-        System.out.println("clicked");
         pos.jump();
     }
 
