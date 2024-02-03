@@ -10,10 +10,12 @@ public class Redessine extends Thread {
         monAffichage = Aff;
     }
 
+    private boolean isPause = false;
+
     @Override
     public void run() {
 
-        for(;;) {
+        while (!isPause){
             try { Thread.sleep(DELAY);
                 monAffichage.repaint(); //Faites-le redessiner de temps en temps
                 monAffichage.AddScore(((float)DELAY)/1000f);
@@ -22,6 +24,8 @@ public class Redessine extends Thread {
         }
     }
 
-    /** Le programme de test lance deux threads entrelacés */
+    public void pause(){
+        isPause = true;
+    }
 
 }

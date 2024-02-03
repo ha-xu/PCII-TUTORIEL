@@ -1,6 +1,7 @@
 package model;
 
 import main.Main;
+import view.Redessine;
 
 public class CollisionDetecteur extends Thread{
     private final Position position;
@@ -10,15 +11,18 @@ public class CollisionDetecteur extends Thread{
 
     private final ParcoursMove parcoursMove;
 
+    private final Redessine redessine;
+
     private static final int interval = 20;
 
     private boolean isPause = false;
     //constructor
-    public CollisionDetecteur(Position p, Parcours parcours,Descendre descendre,ParcoursMove parcoursMove){
+    public CollisionDetecteur(Position p, Parcours parcours,Descendre descendre,ParcoursMove parcoursMove,Redessine redessine){
         position = p;
         this.parcours = parcours;
         this.descendre = descendre;
         this.parcoursMove = parcoursMove;
+        this.redessine = redessine;
     }
 
     @Override
@@ -31,6 +35,8 @@ public class CollisionDetecteur extends Thread{
                     parcoursMove.pause();
                     //stop the circle thread
                     descendre.pause();
+                    //stop the repaint thread
+                    redessine.pause();
                     //stop the collision detecteur thread
                     this.pause();
 

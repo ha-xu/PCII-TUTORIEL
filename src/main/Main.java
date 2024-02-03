@@ -27,7 +27,7 @@ public class Main{
         Redessine rede = new Redessine(aff); //new instance of view.Redessine
         Descendre des = new Descendre(pos); //new instance of model.Descendre
         ParcoursMove parMove = new ParcoursMove(pos,par); //new instance of model.ParcoursMove
-        CollisionDetecteur collisionDetecteur = new CollisionDetecteur(pos,par,des,parMove); //new instance of model.CollisionDetecteur
+        CollisionDetecteur collisionDetecteur = new CollisionDetecteur(pos,par,des,parMove,rede); //new instance of model.CollisionDetecteur
 
         ReactionClic react = new ReactionClic(pos);
         aff.addMouseListener(react);
