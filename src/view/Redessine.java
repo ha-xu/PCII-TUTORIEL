@@ -18,7 +18,6 @@ public class Redessine extends Thread {
         while (!isPause){
             try { Thread.sleep(DELAY);
                 monAffichage.repaint(); //Faites-le redessiner de temps en temps
-                monAffichage.AddScore(((float)DELAY)/1000f);
             }
             catch (Exception e) { e.printStackTrace(); }
         }

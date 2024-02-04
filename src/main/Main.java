@@ -3,6 +3,8 @@ package main;
 import control.ReactionClic;
 import model.*;
 import view.Affichage;
+import view.GameMenuPanel;
+import view.GameOverPanel;
 import view.Redessine;
 
 import javax.swing.*;
@@ -27,7 +29,8 @@ public class Main{
         Redessine rede = new Redessine(aff); //new instance of view.Redessine
         Descendre des = new Descendre(pos); //new instance of model.Descendre
         ParcoursMove parMove = new ParcoursMove(pos,par); //new instance of model.ParcoursMove
-        CollisionDetecteur collisionDetecteur = new CollisionDetecteur(pos,par,des,parMove,rede); //new instance of model.CollisionDetecteur
+        Score score = new Score(); //new instance of model.Score
+        CollisionDetecteur collisionDetecteur = new CollisionDetecteur(pos,par,des,parMove,rede,score); //new instance of model.CollisionDetecteur
 
         ReactionClic react = new ReactionClic(pos);
         aff.addMouseListener(react);
@@ -36,6 +39,7 @@ public class Main{
         rede.start();
         parMove.start();
         collisionDetecteur.start();
+        score.start();
 
 
         gameFrame.getContentPane().removeAll();

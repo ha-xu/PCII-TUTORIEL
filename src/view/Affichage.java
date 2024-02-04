@@ -2,6 +2,7 @@ package view;
 
 import model.Parcours;
 import model.Position;
+import model.Score;
 
 import javax.swing.*;
 import java.awt.*;
@@ -20,7 +21,6 @@ public class Affichage extends JPanel {
     public static final int circleHeight = (int) ((int) Position.HAUREUROVALE * ratio_y);
     public static final int circleWidth = (int) ((int) Position.WIDTHOVALE * ratio_x);
 
-    private static float score = 0;
     private final Position pos;
     private final Parcours parcours;
 
@@ -30,23 +30,16 @@ public class Affichage extends JPanel {
         return new Point( (int)X + (int) (p.getX() * ratio_x), (int)Y - (int) (p.getY() * ratio_y));
     }
 
-    public static float GetScore() {
-        return score;
-    }
+
 
     public Affichage(Position p, Parcours parcours) {
         pos = p;
         this.parcours = parcours;
         setPreferredSize(new Dimension(winWidth, winHeight));
-        score = 0;
+        Score.ResetScore();
         //add score label save two decimal places
-        scoreLabel = new JLabel("Score: " + String.format("%.2f", score));
+        scoreLabel = new JLabel("Score: " + String.format("%.2f", Score.GetScore()));
         this.add(scoreLabel);
-    }
-
-    public void AddScore(float interval){
-        score += interval;
-        scoreLabel.setText("Score: " + String.format("%.2f", score));
     }
 
 
@@ -71,6 +64,10 @@ public class Affichage extends JPanel {
 
 
         paintParcours(g);
+
+        //update the score
+        scoreLabel.setText("Score: " + String.format("%.2f", Score.GetScore()));
+
     }
 
     public void paintCircle(Graphics g){

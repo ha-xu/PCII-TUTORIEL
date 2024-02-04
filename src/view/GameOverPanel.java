@@ -1,5 +1,7 @@
-package main;
+package view;
 
+import main.Main;
+import model.Score;
 import view.Affichage;
 
 import javax.swing.*;
@@ -10,7 +12,7 @@ public class GameOverPanel extends JPanel {
 
     public GameOverPanel() {
         JLabel gameOverLabel = new JLabel("Game Over");
-        JLabel scoreLabel = new JLabel("Score: " + String.format("%.2f", Affichage.GetScore()));
+        JLabel scoreLabel = new JLabel("Score: " + String.format("%.2f", Score.GetScore()));
         JButton reStartButton = new JButton("Restart");
         JButton menuButton = new JButton("Menu");
 

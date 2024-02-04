@@ -1,4 +1,6 @@
-package main;
+package view;
+import main.Main;
+
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;

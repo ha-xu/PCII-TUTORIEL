@@ -8,21 +8,21 @@ public class CollisionDetecteur extends Thread{
     private final Parcours parcours;
 
     private final Descendre descendre;
-
     private final ParcoursMove parcoursMove;
-
     private final Redessine redessine;
+    private final Score score;
 
     private static final int interval = 20;
 
     private boolean isPause = false;
     //constructor
-    public CollisionDetecteur(Position p, Parcours parcours,Descendre descendre,ParcoursMove parcoursMove,Redessine redessine){
+    public CollisionDetecteur(Position p, Parcours parcours,Descendre descendre,ParcoursMove parcoursMove,Redessine redessine,Score score){
         position = p;
         this.parcours = parcours;
         this.descendre = descendre;
         this.parcoursMove = parcoursMove;
         this.redessine = redessine;
+        this.score = score;
     }
 
     @Override
@@ -37,6 +37,8 @@ public class CollisionDetecteur extends Thread{
                     descendre.pause();
                     //stop the repaint thread
                     redessine.pause();
+                    //stop the score thread
+                    score.pause();
                     //stop the collision detecteur thread
                     this.pause();
 
