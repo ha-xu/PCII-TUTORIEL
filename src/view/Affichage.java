@@ -3,9 +3,11 @@ package view;
 import model.Parcours;
 import model.Position;
 import model.Score;
+import main.Main;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.geom.Point2D;
 import java.util.ArrayList;
 
 public class Affichage extends JPanel {
@@ -26,6 +28,17 @@ public class Affichage extends JPanel {
 
     private final JLabel scoreLabel;
 
+
+    public static boolean gameOver = false;
+    private int explosionTime = 0;
+    private int explosionSize = 0;
+
+    private static Point explosionPoint;
+
+    public static void SetExplosionPoint(Point p){
+        explosionPoint = p;
+    }
+
     private Point modelPointToViewPoint(Point p) {
         return new Point( (int)X + (int) (p.getX() * ratio_x), (int)Y - (int) (p.getY() * ratio_y));
     }
@@ -40,6 +53,8 @@ public class Affichage extends JPanel {
         //add score label save two decimal places
         scoreLabel = new JLabel("Score: " + String.format("%.2f", Score.GetScore()));
         this.add(scoreLabel);
+
+        gameOver = false;
     }
 
 
@@ -47,26 +62,33 @@ public class Affichage extends JPanel {
     public void paint(Graphics g) {
         super.paint(g);
 
-        g.setColor(Color.BLACK);
-        //change the thickness of the line
-        Graphics2D g2 = (Graphics2D) g;
-        g2.setStroke(new BasicStroke(5.0f));
-        //change the color of the line
-        g2.setColor(Color.ORANGE);
+
+            g.setColor(Color.BLACK);
+            //change the thickness of the line
+            Graphics2D g2 = (Graphics2D) g;
+            g2.setStroke(new BasicStroke(5.0f));
+            //change the color of the line
+            g2.setColor(Color.ORANGE);
 
 
-        paintCircle(g);
+            paintCircle(g);
 
 
-        g2.setStroke(new BasicStroke(3.0f));
-        //change the color of the line
-        g2.setColor(Color.black);
+            g2.setStroke(new BasicStroke(3.0f));
+            //change the color of the line
+            g2.setColor(Color.black);
 
 
-        paintParcours(g);
+            paintParcours(g);
 
-        //update the score
-        scoreLabel.setText("Score: " + String.format("%.2f", Score.GetScore()));
+            //update the score
+            scoreLabel.setText("Score: " + String.format("%.2f", Score.GetScore()));
+
+        //draw the explosion
+        if(gameOver){
+            paintExplosion(g);
+        }
+
 
     }
 
@@ -88,5 +110,23 @@ public class Affichage extends JPanel {
             Point p2 = modelPointToViewPoint(points.get(i+1));
             //print p1 and p2 's coordinate in console
             g.drawLine((int) (p1.getX()), (int) (p1.getY()), (int) (p2.getX()), (int) (p2.getY()));
-        } }
+        }
+    }
+
+    public void paintExplosion(Graphics g){
+        g.setColor(Color.RED);
+
+        Point realExplosionPoint = modelPointToViewPoint(explosionPoint);
+
+        g.fillOval((int)realExplosionPoint.getX() - explosionSize/2, (int) realExplosionPoint.getY() - explosionSize/2, explosionSize, explosionSize);
+
+        if(explosionSize < 50) {
+            explosionSize += 3;
+
+        }else{
+
+            Main.GameOver();
+        }
+    }
+
 }

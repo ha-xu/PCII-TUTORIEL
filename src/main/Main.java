@@ -2,10 +2,7 @@ package main;
 
 import control.ReactionClic;
 import model.*;
-import view.Affichage;
-import view.GameMenuPanel;
-import view.GameOverPanel;
-import view.Redessine;
+import view.*;
 
 import javax.swing.*;
 public class Main{
